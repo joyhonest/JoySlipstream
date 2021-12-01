@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.joyhonest.joyslipstream">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application>
+        <activity android:name="com.joyhonest.joyslipstream.RockerSettingActivitiy"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.Slipstream"
+            android:screenOrientation="sensorLandscape"/>
+        <activity
+            android:name="com.joyhonest.joyslipstream.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.Slipstream"
+            android:screenOrientation="sensorLandscape">
+        </activity>
+        <activity
+            android:theme="@style/Theme.Slipstream"
+            android:name=".DispPhotoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:theme="@style/Theme.Slipstream"
+            android:name=".DispVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:theme="@style/Theme.Slipstream"
+            android:name="com.joyhonest.joyslipstream.FirstActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+
+        <activity
+            android:theme="@style/Theme.Slipstream"
+            android:name="com.joyhonest.joyslipstream.GridActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:theme="@style/Theme.Slipstream"
+            android:name="com.joyhonest.joyslipstream.HelpActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:theme="@style/Theme.Slipstream"
+            android:name="com.joyhonest.joyslipstream.GalleryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:theme="@style/Theme.Slipstream"
+            android:name="com.joyhonest.joyslipstream.PlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape" />
+    </application>
+
+
+</manifest>

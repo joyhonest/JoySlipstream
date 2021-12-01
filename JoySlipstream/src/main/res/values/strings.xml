@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Slipstream WiFi</string>
+    <string name="Do_you_sure_delete">Are you sure to delete the selected file?</string>
+    <string name="OK">OK</string>
+    <string name="cancel">cancel</string>
+    <string name="WARNING">WARNING</string>
+    <string name="downloading">downloading</string>
+    <string name="Loading_data">loading_data</string>
+
+</resources>
