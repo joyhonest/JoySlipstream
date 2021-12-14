@@ -42,9 +42,21 @@ Button help;
 
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        JoyApp.activityAount--;
+        if (JoyApp.activityAount == 0) {
+            if (!JoyApp.bGotsystemActivity) {
+                EventBus.getDefault().post("", "Go2Background");
+            }
+        }
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         JoyApp.bGotsystemActivity = false;
+        JoyApp.activityAount++;
     }
 
     @Override

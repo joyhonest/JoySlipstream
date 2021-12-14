@@ -158,8 +158,20 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
 
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        JoyApp.activityAount--;
+        if (JoyApp.activityAount == 0) {
+            if (!JoyApp.bGotsystemActivity) {
+                EventBus.getDefault().post("", "Go2Background");
+            }
+        }
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
+        JoyApp.activityAount++;
         JoyApp.bGotsystemActivity = false;
     }
 
@@ -180,7 +192,6 @@ public class GalleryActivity extends AppCompatActivity implements View.OnClickLi
     private void Go2Background(String str) {
         if(!JoyApp.bGotsystemActivity) {
             finish();
-
             overridePendingTransition(0, 0);
         }
     }

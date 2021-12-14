@@ -52,28 +52,36 @@ public class DispPhotoActivity extends AppCompatActivity implements ViewPager.On
                 onBackPressed();
             }
         });
-
-
         EventBus.getDefault().register(this);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        JoyApp.activityAount--;
+        if (JoyApp.activityAount == 0) {
+            if (!JoyApp.bGotsystemActivity) {
+                EventBus.getDefault().post("", "Go2Background");
+            }
+        }
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
         JoyApp.bGotsystemActivity = false;
+        JoyApp.activityAount++;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        if(!JoyApp.bNormalExit)
-//            EventBus.getDefault().post("a","GotoExit");
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        overridePendingTransition(0,0);
         //     JoyApp.bNormalExit = true;
     }
 
@@ -207,7 +215,6 @@ public class DispPhotoActivity extends AppCompatActivity implements ViewPager.On
     private void Go2Background(String str) {
         if(!JoyApp.bGotsystemActivity) {
             finish();
-
             overridePendingTransition(0, 0);
         }
     }

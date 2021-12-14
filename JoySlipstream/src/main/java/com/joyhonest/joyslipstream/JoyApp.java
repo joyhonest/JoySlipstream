@@ -38,7 +38,7 @@ import java.util.Locale;
 
 public class JoyApp  //extends Application implements Application.ActivityLifecycleCallbacks
 {
-    private int activityAount = 0;
+    static int activityAount = 0;
     public static boolean bGotsystemActivity = false;
 
 

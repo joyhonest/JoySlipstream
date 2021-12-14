@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.joyhonest.joyslipstream.databinding.ActivityGridBinding;
+import com.joyhonest.joyslipstream.databinding.MyGridNodeBinding;
 
 import org.simple.eventbus.EventBus;
 import org.simple.eventbus.Subscriber;
@@ -216,9 +217,21 @@ public class GridActivity extends AppCompatActivity  implements View.OnClickList
 
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        JoyApp.activityAount--;
+        if (JoyApp.activityAount == 0) {
+            if (!JoyApp.bGotsystemActivity) {
+                EventBus.getDefault().post("", "Go2Background");
+            }
+        }
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         JoyApp.bGotsystemActivity = false;
+        JoyApp.activityAount++;
     }
 
     @Override
@@ -625,16 +638,28 @@ public class GridActivity extends AppCompatActivity  implements View.OnClickList
             MyViewHolder holder = null;
             MyNode node = mfilelist.get(position);
             if (convertView == null) {
-                convertView = mInflater.inflate(viewResourceId, null);
+
+                MyGridNodeBinding binding;//
+                binding = MyGridNodeBinding.inflate(mInflater);
+                convertView = binding.getRoot();
+                //convertView = mInflater.inflate(viewResourceId, null);
                 holder = new MyViewHolder();
-                holder.progressBar = (ProgressBar) convertView.findViewById(R.id.Grid_progressBar1);
+                holder.progressBar = binding.GridProgressBar1;
                 holder.progressBar.setProgress(0);
                 holder.progressBar.setMax(1000);
-                holder.icon = (ImageView) convertView.findViewById(R.id.Grid_imageView1);
-                holder.video_bg = (ImageView) convertView.findViewById(R.id.video_bg);
-                holder.caption = (TextView) convertView.findViewById(R.id.Grid_textView1);
+                holder.icon = binding.GridImageView1;
+                holder.video_bg = binding.videoBg;
+                holder.caption = binding.GridTextView1;
                 holder.sUrl = "";
-                holder.SelectImg = convertView.findViewById(R.id.select_icon);
+                holder.SelectImg = binding.selectIcon;
+//                holder.progressBar = (ProgressBar) convertView.findViewById(R.id.Grid_progressBar1);
+//                holder.progressBar.setProgress(0);
+//                holder.progressBar.setMax(1000);
+//                holder.icon = (ImageView) convertView.findViewById(R.id.Grid_imageView1);
+//                holder.video_bg = (ImageView) convertView.findViewById(R.id.video_bg);
+//                holder.caption = (TextView) convertView.findViewById(R.id.Grid_textView1);
+//                holder.sUrl = "";
+//                holder.SelectImg = convertView.findViewById(R.id.select_icon);
                 convertView.setTag(holder);
             } else {
                 holder = (MyViewHolder) convertView.getTag();

@@ -8,12 +8,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
 
+
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/Grid_imageView1"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/app_name" />
 
         <ImageView
             android:id="@+id/video_bg"
@@ -23,15 +26,16 @@
             android:background="@mipmap/video_bg"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:contentDescription="@string/app_name" />
         <ImageView
             android:id="@+id/select_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
 
             android:src="@mipmap/download_icon"
-            android:layout_alignRight="@+id/Grid_imageView1"
-            />
+            android:layout_alignEnd="@+id/Grid_imageView1"
+            android:contentDescription="@string/app_name" />
 
 
     </RelativeLayout>
@@ -44,14 +48,23 @@
         android:visibility="gone"
         android:layout_gravity="center" />
 
+
     <ProgressBar
-        android:layout_width="100dp"
-        android:layout_height="10dp"
         android:id="@+id/Grid_progressBar1"
         style="?android:attr/progressBarStyleHorizontal"
-        android:max="100"
         android:progressDrawable="@drawable/progressbar"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="10dp" />
+
+<!--    style="?android:attr/progressBarStyleHorizontal"-->
+<!--    <ProgressBar-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="10dp"-->
+<!--        android:id="@+id/Grid_progressBar1"-->
+<!--        android:max="100"-->
+<!--        android:progressDrawable="@drawable/progressbar"-->
+<!--        android:layout_gravity="center" />-->
 
     <Space
         android:layout_width="20dp"

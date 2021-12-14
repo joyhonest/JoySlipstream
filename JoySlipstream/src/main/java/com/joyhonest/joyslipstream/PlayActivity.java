@@ -119,8 +119,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     JoyApp.bGotsystemActivity = true;
                     joyhPermissionPageUtils.jumpPermissionPage();
                 }).create();
-
-
         if (JoyApp.isAndroidQ()) {
             F_GetPermissions();
         }
@@ -135,10 +133,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 alertDialog.show();
             }
         });
-
         SentCmd_Handler.post(sentCmdRunnable);
         EventBus.getDefault().register(this);
-
     }
 
 
@@ -148,19 +144,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             if (JoyApp.bConnected) {
                 JoyApp.PlayPhotoMusic();
                 String sName = JoyApp.getFileNameFromDate(false);
-                //wifination.naSnapPhoto(sName, wifination.TYPE_ONLY_PHONE);
                 wifiCamera.naSnapPhoto(sName, wifiCamera.TYPE_ONLY_PHONE, wifiCamera.TYPE_DEST_SNADBOX);
             }
 
         } else if (nAsk == 1) {
             if (JoyApp.bConnected) {
                 JoyApp.PlayBtnVoice();
-//                if (wifination.isPhoneRecording()) {
-//                    wifination.naStopRecord_All();
-//                } else {
-//                    String sName = JoyApp.getFileNameFromDate(true);
-//                    wifination.naStartRecord(sName, wifination.TYPE_ONLY_PHONE);
-//                }
                 if (wifiCamera.isPhoneRecording()) {
                     wifiCamera.naStopRecordAll();
                 } else {
@@ -171,20 +160,31 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             }
         } else if (nAsk == 2) {
             JoyApp.PlayBtnVoice();
-            //wifination.naStopRecord_All();
             wifiCamera.naStopRecordAll();
             startActivity(new Intent(PlayActivity.this, GalleryActivity.class));
             overridePendingTransition(0, 0);
         }
         nAsk = -1;
-
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG,"onStop1");
+        JoyApp.activityAount--;
+        if (JoyApp.activityAount == 0) {
+            if (!JoyApp.bGotsystemActivity) {
+                EventBus.getDefault().post("", "Go2Background");
+            }
+        }
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.e(TAG,"onStart1");
         JoyApp.bGotsystemActivity = false;
+        JoyApp.activityAount++;
     }
 
     @Override
@@ -271,7 +271,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         } else if (R.id.btn_vr == id) {
             JoyApp.PlayBtnVoice();
             bVr = !bVr;
-            //wifination.naSet3D(bVr);
             wifiCamera.naSetVR(bVr);
             if (!JoyApp.bConnected) {
                 if (bVr) {
@@ -287,7 +286,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             JoyApp.PlayBtnVoice();
             JoyApp.bStop = true;
             JoyApp.bDn = false;
-            JoyApp.bDn = false;
+            JoyApp.bUp = false;
             binding.btnEngineSwitch.setEnabled(false);
             binding.btnAutoLaunchLand.setEnabled(false);
 
